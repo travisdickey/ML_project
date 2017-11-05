@@ -1,0 +1,55 @@
+ 
+Shape of Dataset, # of People & Features: (146, 21)
+ 
+<pandas.core.groupby.DataFrameGroupBy object at 0x00000000028EA278>
+# of POIs: True = POI; False = Not POI
+False    128
+True      18
+Name: poi, dtype: int64
+ 
+ 
+Total Number of Features: 21
+ 
+ 
+Running GridSearchCV for LogisticRegression.
+Fitting 100 folds for each of 1 candidates, totalling 100 fits
+Running GridSearchCV for DecisionTreeClassifier.
+Fitting 100 folds for each of 1 candidates, totalling 100 fits
+ 
+                estimator min_score mean_score max_score std_score  \
+0      LogisticRegression         0   0.337431  0.888889  0.165247   
+1  DecisionTreeClassifier         0   0.258988  0.833333  0.172876   
+
+  CLF__class_weight CLF__random_state dim_red__n_components  \
+0          balanced                42                    20   
+1               NaN                42                   NaN   
+
+  dim_red__random_state selector__k  
+0                    42         NaN  
+1                    42          11  
+ 
+clf:  Pipeline(memory=None,
+     steps=[('scaling', StandardScaler(copy=True, with_mean=True, with_std=True)), ('dim_red', PCA(copy=True, iterated_power='auto', n_components=20, random_state=42,
+  svd_solver='auto', tol=0.0, whiten=False)), ('CLF', LogisticRegression(C=100000000000000000000L, class_weight='balanced',
+          dual...,
+          random_state=42, solver='liblinear', tol=1e-10, verbose=0,
+          warm_start=False))])
+ 
+Singular Value Weights for PCA Components: 
+[  4.24447275e+01   2.22500512e+01   1.38160609e+01   1.08875849e+01
+   8.88939752e+00   8.18926445e+00   7.63405574e+00   6.69677337e+00
+   3.45370433e+00   2.97126529e+00   2.75511471e+00   2.22200191e+00
+   1.91319556e+00   1.74788910e+00   1.46025159e+00   1.22578446e+00
+   8.75772519e-01   5.82017169e-01   7.60290714e-02   2.03078269e-03]
+ 
+Tester Classification report :
+Pipeline(memory=None,
+     steps=[('scaling', StandardScaler(copy=True, with_mean=True, with_std=True)), ('dim_red', PCA(copy=True, iterated_power='auto', n_components=20, random_state=42,
+  svd_solver='auto', tol=0.0, whiten=False)), ('CLF', LogisticRegression(C=100000000000000000000L, class_weight='balanced',
+          dual...,
+          random_state=42, solver='liblinear', tol=1e-10, verbose=0,
+          warm_start=False))])
+	Accuracy: 0.82027	Precision: 0.37044	Recall: 0.49750	F1: 0.42467	F2: 0.46556
+	Total predictions: 15000	True positives:  995	False positives: 1691	False negatives: 1005	True negatives: 11309
+
+ 
