@@ -32,8 +32,10 @@ Final Project: Investigate Fraud from Enron Email
 
 	```
 	  clf:  Pipeline(memory=None,
-	       steps=[('scaling', StandardScaler(copy=True, with_mean=True, with_std=True)), ('dim_red', PCA(copy=True, iterated_power='auto', n_components=None, random_state=None,
-	    svd_solver='auto', tol=0.0, whiten=False)), ('CLF', LogisticRegression(C=100000000000000000000L, class_weight='balanced',
+	       steps=[('scaling', StandardScaler(copy=True, with_mean=True, with_std=True)),
+	       ('dim_red', PCA(copy=True, iterated_power='auto', n_components=None, random_state=None,
+	    svd_solver='auto', tol=0.0, whiten=False)),
+	    ('CLF', LogisticRegression(C=100000000000000000000L, class_weight='balanced',
 	            ...,
 	            random_state=42, solver='liblinear', tol=1e-10, verbose=0,
 	            warm_start=False))])
@@ -87,4 +89,3 @@ Final Project: Investigate Fraud from Enron Email
 	```
 
 	My algorithm's recall score is slightly better than the precision score, which is explained by the fewer false-negatives than false_positives. In other words, the algorithm is identifying more people as POIs who are not POIs, than it is failing to identify ones who are.
-

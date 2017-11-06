@@ -232,7 +232,7 @@ print ' '
 # use test_classifier to evaluate the model
 # selected by GridSearchCV in EstimatorSelectionHelper.fit()
 print "Tester Classification report :"
-test_classifier(clf, my_dataset, features_list) # assume should be features_selected, not features_list
+test_classifier(clf, my_dataset, features_list) 
 print ' '
 
 ### Dump classifier, dataset, and features_list
