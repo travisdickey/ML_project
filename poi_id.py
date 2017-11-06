@@ -28,21 +28,21 @@ print df.groupby('poi')
 print "# of POIs: True = POI; False = Not POI"
 print df['poi'].value_counts()
 print " "
-# -------------------- Remove Outliers ---------------------------
+# Remove Outliers
 df.drop(['email_address'],axis=1,inplace=True)
 
 df.drop(['TOTAL',
          'THE TRAVEL AGENCY IN THE PARK'])
 
-# *********** Finishing: Create my_dataset, train and test *********
-# replace NaN by 0, and all should be float
+# Create my_dataset, train and test
+# replace NaN by 0; change all to float
 df.replace(to_replace= 'NaN', value= 0,inplace=True)
 df=df.astype(float)
 
 # Transform df to dictionary
 data_dict= df.to_dict('index')
 
-# Store to my_dataset for easy export below.
+# Store to my_dataset for easy export below
 my_dataset =data_dict
 # get features_list
 features_list = []
