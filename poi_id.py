@@ -5,9 +5,7 @@
 ### the best overall estimator; File also runs tester.py to test the
 ### precision and recall on the best estimator
 
-import sys
 import pickle
-sys.path.append("../tools/")
 
 ### import files
 from feature_format import featureFormat, targetFeatureSplit
@@ -232,7 +230,7 @@ print ' '
 # use test_classifier to evaluate the model
 # selected by GridSearchCV in EstimatorSelectionHelper.fit()
 print "Tester Classification report :"
-test_classifier(clf, my_dataset, features_list) 
+test_classifier(clf, my_dataset, features_list)
 print ' '
 
 ### Dump classifier, dataset, and features_list
