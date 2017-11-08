@@ -29,7 +29,10 @@ print "# of POIs: True = POI; False = Not POI"
 print df['poi'].value_counts()
 print " "
 # Remove Outliers
-df.drop(['email_address'],axis=1,inplace=True)
+df.drop(['email_address',
+         'deferred_income',
+         'restricted_stock_deferred'],
+         axis=1,inplace=True)
 
 df.drop(['TOTAL',
          'THE TRAVEL AGENCY IN THE PARK'])
@@ -122,6 +125,7 @@ Pipe_DTC = Pipeline(steps=[
 
 Pipe_LR = Pipeline(steps=[
         ('scaling', StandardScaler()),
+        ('selector', kbest),
         ('dim_red', pca),
         ("CLF", clf_logistic)
     ]
@@ -138,11 +142,13 @@ models = {
 
 params = {
     'DecisionTreeClassifier':  { 'dim_red__random_state': [42],
-                                 'selector__k': [11],
+                                 'selector__k': [7,9,11],
                                  'CLF__random_state': [42],
  },
-    'LogisticRegression': {  'dim_red__random_state': [42],
-                             'dim_red__n_components': [20],
+    'LogisticRegression': {  'selector__k': [14,16,18],
+                             'dim_red__random_state': [42],
+                             'dim_red__n_components': [10,12,14],
+                             'dim_red__svd_solver': ['auto','full'],
                              'CLF__random_state': [42],
                              'CLF__class_weight': ['balanced'],
 
@@ -223,6 +229,14 @@ print " "
 weights = clf.named_steps['dim_red'].singular_values_
 print "Singular Value Weights for PCA Components: "
 print weights
+
+features_selected=[features_list[i+1] for i in clf.named_steps['selector'].get_support(indices=True)]
+importances = clf.named_steps['selector'].scores_
+indices = np.argsort(importances)[::-1]
+print 'Feature Ranking: '
+for i in range(len(features_selected)):
+    print "feature no. {}: {} ({})".format(i+1,features_selected[indices[i]],importances[indices[i]])
+
 
 # import the test_classifier from tester.py
 from tester import test_classifier
